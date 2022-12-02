@@ -1,5 +1,5 @@
 ## RegEx Blacklist
 ## Github: https://github.com/hari4274/hari4274.github.io
 
-## Youtube ads
+# Youtube ads
 (rr[:digit:]{1}---[:space:]{2}-[:space:]{8}-[A-Za-z0-9_]{4})\.googlevideo\.com
