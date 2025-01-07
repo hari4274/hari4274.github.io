@@ -58,8 +58,8 @@
 <div align="center">
 <h3 align="center">Show some &nbsp;❤️&nbsp; by starring some of the repositories!</h3>
 
-<!--[website]: -->
-[linkedin](https://www.linkedin.com/in/hari4274)
+<!--[website]: 
+[linkedin](https://www.linkedin.com/in/hari4274)-->
 <p align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=100&section=footer"/>
 </p>
