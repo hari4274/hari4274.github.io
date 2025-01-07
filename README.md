@@ -10,7 +10,7 @@
 
 - 🎯 Portfolio website: [Portfolio](https://hari4274.github.io/)
 - 💬 Ask me about anything, I am happy to help :smile:
-- 📬 How to reach me: [Let's get in touch!][linkedin]
+- 📬 How to reach me: [Let's get in touch!](https://www.linkedin.com/in/hari4274/)
 
 ### Languages and Tools: 
 <p>
@@ -59,7 +59,7 @@
 <h3 align="center">Show some &nbsp;❤️&nbsp; by starring some of the repositories!</h3>
 
 <!--[website]: -->
-[linkedin]: https://www.linkedin.com/in/hari4274
+[linkedin](https://www.linkedin.com/in/hari4274)
 <p align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=100&section=footer"/>
 </p>
