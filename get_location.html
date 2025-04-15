@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Share Your Location</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        button {
+            background: #4285F4;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 15px 0;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #3367D6;
+        }
+        #locationData {
+            margin: 25px 0;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background: #f8f9fa;
+            display: none;
+        }
+        #mapLink {
+            color: #1a73e8;
+            text-decoration: underline;
+            cursor: pointer;
+            word-break: break-all;
+            margin: 15px 0;
+            display: inline-block;
+        }
+        .accuracy {
+            color: #5f6368;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Share Your Location</h2>
+    <p>Click below to get your current location</p>
+    
+    <button onclick="getLocation()">Get My Location</button>
+    
+    <div id="locationData">
+        <p><strong>Your Location:</strong></p>
+        <div id="coordinates"></div>
+        <div id="mapLink" onclick="copyMapLink()"></div>
+        <div class="accuracy" id="accuracy"></div>
+        <button onclick="copyMapLink()">Copy Map Link</button>
+    </div>
+
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    showPosition,
+                    showError,
+                    { enableHighAccuracy: true }
+                );
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        function showPosition(position) {
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+            const accuracy = position.coords.accuracy;
+            const mapUrl = `https://www.google.com/maps?q=${lat},${lng}`;
+            
+            document.getElementById('coordinates').innerHTML = 
+                `Latitude: ${lat.toFixed(6)}<br>Longitude: ${lng.toFixed(6)}`;
+            document.getElementById('mapLink').innerHTML = mapUrl;
+            document.getElementById('accuracy').innerHTML = 
+                `Accuracy: within ${Math.round(accuracy)} meters`;
+            
+            document.getElementById('locationData').style.display = 'block';
+        }
+
+        function showError(error) {
+            let message = "Error getting location: ";
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    message += "You denied the request.";
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    message += "Location unavailable.";
+                    break;
+                case error.TIMEOUT:
+                    message += "Request timed out.";
+                    break;
+                default:
+                    message += "Unknown error.";
+            }
+            alert(message);
+        }
+
+        function copyMapLink() {
+            const mapLink = document.getElementById('mapLink').innerText;
+            navigator.clipboard.writeText(mapLink).then(() => {
+                alert("Google Maps link copied to clipboard!");
+            });
+        }
+    </script>
+</body>
+</html>

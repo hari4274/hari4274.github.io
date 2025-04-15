@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Location Info</title>
+</head>
+<body style="font-family: Arial, sans-serif; padding: 20px;">
+  <h2>Your Location Info</h2>
+  <p><strong>Latitude:</strong> <span id="lat">Loading...</span></p>
+  <p><strong>Longitude:</strong> <span id="lon">Loading...</span></p>
+  <p><a id="mapsLink" href="#" target="_blank">Open in Google Maps</a></p>
+
+  <button onclick="shareLocation()">📤 Share</button>
+  <button onclick="copyLink()">📋 Copy Link</button>
+
+  <script>
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+      } else {
+        alert("Geolocation is not supported by this browser.");
+      }
+    }
+
+    function showPosition(position) {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+      const link = `https://maps.google.com/?q=${lat},${lon}`;
+
+      document.getElementById("lat").textContent = lat;
+      document.getElementById("lon").textContent = lon;
+      document.getElementById("mapsLink").href = link;
+      document.getElementById("mapsLink").textContent = link;
+    }
+
+    function showError(error) {
+      alert("Error getting location: " + error.message);
+    }
+
+    function shareLocation() {
+      const link = document.getElementById("mapsLink").href;
+      if (navigator.share) {
+        navigator.share({
+          title: 'My Location',
+          text: 'Here is my current location:',
+          url: link
+        });
+      } else {
+        alert('Web Share API not supported on this browser.');
+      }
+    }
+
+    function copyLink() {
+      const link = document.getElementById("mapsLink").href;
+      navigator.clipboard.writeText(link).then(() => {
+        alert("Copied to clipboard!");
+      });
+    }
+
+    // Get location on load
+    getLocation();
+  </script>
+</body>
+</html>
